@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquete3;
+package paquete4;
 
+import paquete3.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquete1.Calificacion;
-import paquete1.Profesor;
+import paquete1.Hospital;
+
 
 public class EscrituraArchivoSecuencial {
 
     private String nombreArchivo;
     private ObjectOutputStream salida; // envía los datos a un archivo
-    private Calificacion registro;
-    private ArrayList<Calificacion> lista;
+    private Hospital registro;
+    private ArrayList<Hospital> lista;
 
     public EscrituraArchivoSecuencial(String nombreArc) {
         nombreArchivo = nombreArc;
@@ -45,7 +46,7 @@ public class EscrituraArchivoSecuencial {
         nombreArchivo = n;
     }
     // agrega registros al archivo
-    public void establecerRegistro(Calificacion p) {
+    public void establecerRegistro(Hospital p) {
         registro = p;
     }
 
@@ -61,7 +62,7 @@ public class EscrituraArchivoSecuencial {
     // del archivo
     public void establecerLista() {
         LecturaArchivoSecuencial l = new LecturaArchivoSecuencial(obtenerNombreArchivo());
-        l.establecerListaCalificaciones();
+        l.establecerListaHospitales();
         lista = l.obtenerListaCalificaciones();
     }
 
@@ -69,7 +70,7 @@ public class EscrituraArchivoSecuencial {
         return nombreArchivo;
     }
     
-    public ArrayList<Calificacion> obtenerLista() {
+    public ArrayList<Hospital> obtenerLista() {
         return lista;
     }
 

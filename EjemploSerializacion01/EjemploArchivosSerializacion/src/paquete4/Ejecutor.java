@@ -3,45 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquete3;
+package paquete4;
 
+import paquete3.*;
 import paquete1.Calificacion;
+import paquete1.Hospital;
 import paquete1.Profesor;
 
 public class Ejecutor {
 
     public static void main(String[] args) {
 
-        // nombre del archivo
-        String nombreArchivo = "calificaciones.data";
+       String fileName = "hospital.txt";
+        
+        Hospital hospital1 = new Hospital("Caritas", 10, 300.55);
+        Hospital hospital2 = new Hospital("Clínica Abendaño", 50, 1900.66);
+        Hospital hospital3 = new Hospital("Solca", 30, 660.20);
 
-        Calificacion c1 = new Calificacion(10, "Computación");
-        Calificacion c2 = new Calificacion(9, "Lógica");
-        Calificacion c3 = new Calificacion(8, "Literatura");
+        Hospital[] listaHospitales = {hospital1, hospital2, hospital3};
 
-        Profesor profesor1 = new Profesor("Tara Hernandez", "contratado");
-        Profesor profesor2 = new Profesor("Gregory Walsh", "nombramiento");
-        Profesor profesor3 = new Profesor("Kevin Page", "nombramiento");
+        EscrituraArchivoSecuencial archivo = new EscrituraArchivoSecuencial(fileName);
 
-        c1.establecerProfesor(profesor1);
-        c2.establecerProfesor(profesor2);
-        c3.establecerProfesor(profesor3);
-
-        Calificacion[] lista = {c1, c2, c3};
-
-        EscrituraArchivoSecuencial archivo = new EscrituraArchivoSecuencial(nombreArchivo);
-
-        for (int i = 0; i < lista.length; i++) {
-            // establecer el valor del atributo registro
-            archivo.establecerRegistro(lista[i]);
-            // establecer en el archivo el atributo del registro
+        for (int i = 0; i < listaHospitales.length; i++) {      
+            archivo.establecerRegistro(listaHospitales[i]);       
             archivo.establecerSalida();
         }
-
         archivo.cerrarArchivo();
+        
+    
 
-        LecturaArchivoSecuencial lectura = new LecturaArchivoSecuencial(nombreArchivo);
-        lectura.establecerListaCalificaciones();
+        LecturaArchivoSecuencial lectura = new LecturaArchivoSecuencial(fileName);
+        lectura.establecerListaHospitales();
         System.out.println(lectura);
     }
 }
